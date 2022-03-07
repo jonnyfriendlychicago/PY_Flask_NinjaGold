@@ -9,44 +9,50 @@ app.secret_key = 'ESR4T4RWT2345tyu'
 def beHome():
     if "transactionsList" not in session:
         session['transactionsList'] = []
-        # session['transactionsList2'] = []
-        # session['transactionsDetailsList'] = []
     
     if "StudentInfoList" not in session: 
         session['StudentInfoList'] = [
-            {'name' : 'Leo', 'age' : 17}
-            , {'name' : 'Donny', 'age' : 16 }
-            ,{'name' : 'Raph', 'age' : 18}
-            , {'name' : 'Mikey', 'age' : 17}
+            # {'name' : 'Leo', 'age' : 17}
+            # , {'name' : 'Donny', 'age' : 16 }
+            # ,{'name' : 'Raph', 'age' : 18}
+            # , {'name' : 'Mikey', 'age' : 17}
         ]
-    print(session['StudentInfoList'])
+
+        # session['StudentInfoList'] = listo
+        # session['StudentInfoListDos'] = listo
+
+
     return render_template("index.html")
 
 @app.route('/processMoney', methods=['Post'])
 def processMoney():
     if (request.form['which_form'] =='transType1'):
-        # delta = random.randint(10,20)
-        # session['transactionsList'].append(delta)
-        # session['transactionsList2'].append(20)
-        # session['sumTransactionList'] = sum(session['transactionsList'])
-        # session['transactionsDetailsList'].append(1)
         
-        a_dictionary = {'name' : 'Splinter', 'age' : 60}
-        # session.dictionary_copy = session.a_dictionary.copy()
-        session['StudentInfoList'].append(a_dictionary)
-        
-        # print(session.StudentInfoList)
-        print(session['StudentInfoList'])
-        # jrf         
-
-    elif request.form['which_form'] =='transType2':
-        session['transactionsList'].append(40)
-        # session['transactionsList2'].append(40)
+        delta = random.randint(10,20)
+        session['transactionsList'].append(delta)
         session['sumTransactionList'] = sum(session['transactionsList'])
+
+        
+        # below is the Cameron design that works!
+        a_dictionary = {'loc' : 'Farmville', 'amt' : delta}
+        mylist = session['StudentInfoList']
+        mylist.append(a_dictionary)
+        session['StudentInfoList'] = mylist
+        
+        # below is the Cameron design that works!  commenting out for future ref as i now hck it up further
+        # a_dictionary = {'name' : 'JonnyFriend', 'age' : 42}
+        # mylist = session['StudentInfoList']
+        # mylist.append(a_dictionary)
+        # session['StudentInfoList'] = mylist
+
+    # elif request.form['which_form'] =='transType2':
+        # session['transactionsList'].append(40)
+        # session['transactionsList2'].append(40)
+        # session['sumTransactionList'] = sum(session['transactionsList'])
         # session['transactionsDetailsList'].append(2)
 
-    # elif request.form['which_form'] =='transTypeReset':
-    #     session.clear()
+    elif request.form['which_form'] =='transTypeReset':
+        session.clear()
         # session['transactionsList'] = []
         # session['transactionsList2'] = []
         # session['transactionsDetailsList'] = []

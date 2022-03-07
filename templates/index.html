@@ -17,14 +17,14 @@
         <div class="row001"> 
             <p>Money total: {{session['sumTransactionList']}}</p>
             
-            <div class="formContainer01">
-                <p class="formLabels">Farmville</p>
-                <form action="/processMoney" method="post">
-                    <input type="hidden" name="which_form" value="transType1">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Get $$$</button>
-                    <p class="formLabels">Adds 20</p>
-                </form>
-            </div>
+                <div class="formContainer01">
+                    <p class="formLabels">Farmville</p>
+                    <form action="/processMoney" method="post">
+                        <input type="hidden" name="which_form" value="transType1">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Get $$$</button>
+                        <p class="formLabels">Adds 20</p>
+                    </form>
+                </div>
 
             <div class="formContainer01">
                 <p class="formLabels">Cavern</p>
@@ -54,13 +54,13 @@
             <div class="formContainer01">
                 <table class="studentTbl">  
                     <tr>
-                        <th class="studentTblHdr">Name</th>
-                        <th class="studentTblHdr">Age</th>
+                        <th class="studentTblHdr">Location</th>
+                        <th class="studentTblHdr">Amount</th>
                     </tr>
                     {% for s in session.StudentInfoList %}
                     <tr> 
-                        <td class="studentTblData">{{s['name']}}</td>
-                        <td class="studentTblData">{{s['age']}}</td>
+                        <td class="studentTblData">{{s['loc']}}</td>
+                        <td class="studentTblData">{{s['amt']}}</td>
                     </tr>
                     {% endfor %}    
                 </table>
