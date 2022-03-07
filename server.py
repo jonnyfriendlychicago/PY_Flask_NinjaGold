@@ -1,6 +1,7 @@
 # the next two lines always need to be atop this server.py file 
 from collections import UserList
 from flask import Flask, render_template, request, redirect, session # Import Flask to allow us to create our app
+import random 
 app = Flask(__name__)    # Create a new instance of the Flask class called "app"
 app.secret_key = 'ESR4T4RWT2345tyu' 
 
@@ -8,41 +9,55 @@ app.secret_key = 'ESR4T4RWT2345tyu'
 def beHome():
     if "transactionsList" not in session:
         session['transactionsList'] = []
-        session['sumTransactionList'] = sum(session['transactionsList'])
+        # session['transactionsList2'] = []
+        # session['transactionsDetailsList'] = []
+    
+    if "StudentInfoList" not in session: 
+        session['StudentInfoList'] = [
+            {'name' : 'Leo', 'age' : 17}
+            , {'name' : 'Donny', 'age' : 16 }
+            ,{'name' : 'Raph', 'age' : 18}
+            , {'name' : 'Mikey', 'age' : 17}
+        ]
+    print(session['StudentInfoList'])
     return render_template("index.html")
 
 @app.route('/processMoney', methods=['Post'])
 def processMoney():
-    session['transactionsList'].append(20)
-    return redirect('/displayProcessMoney')
+    if (request.form['which_form'] =='transType1'):
+        # delta = random.randint(10,20)
+        # session['transactionsList'].append(delta)
+        # session['transactionsList2'].append(20)
+        # session['sumTransactionList'] = sum(session['transactionsList'])
+        # session['transactionsDetailsList'].append(1)
+        
+        a_dictionary = {'name' : 'Splinter', 'age' : 60}
+        # session.dictionary_copy = session.a_dictionary.copy()
+        session['StudentInfoList'].append(a_dictionary)
+        
+        # print(session.StudentInfoList)
+        print(session['StudentInfoList'])
+        # jrf         
 
-# @app.route('/destroy_session')
-# def killTheCount():
-#     session.pop('counterCount')		# clears a specific key
-#     return redirect('/')
+    elif request.form['which_form'] =='transType2':
+        session['transactionsList'].append(40)
+        # session['transactionsList2'].append(40)
+        session['sumTransactionList'] = sum(session['transactionsList'])
+        # session['transactionsDetailsList'].append(2)
 
-#     session['yourName'] = request.form['yourName']
-#     session['dojoLocation'] = request.form['dojoLocation']
-#     session['favoriteLanguage'] = request.form['favoriteLanguage']
-#     session['favoriteDojoTa'] = request.form.getlist('favoriteDojoTa')
-#     session['comment'] = request.form['comment']
+    # elif request.form['which_form'] =='transTypeReset':
+    #     session.clear()
+        # session['transactionsList'] = []
+        # session['transactionsList2'] = []
+        # session['transactionsDetailsList'] = []
+        # session['sumTransactionList'] = sum(session['transactionsList'])
+        # session['sumTransactionList2'] = sum(session['transactionsList2'])
+#
+    return redirect('/displayCompletedProcessMoney') # this entire two-step redirect is only needed when you've got a results page. 
 
-#     return redirect('/displaySubmissionSuccess')
-
-@app.route('/displayProcessMoney')
+@app.route('/displayCompletedProcessMoney')
 def displayProcessMoney():
-    return render_template("index.html")
-
-
-
-
-
-# @app.route('/destroy_session')
-# def killTheCount():
-#     session.pop('counterCount')		# clears a specific key
-#     return redirect('/')
-
-
+    return redirect("/")
 
 
 """DON'T TOUCH BELOW :-) below always needs to be at the bottom of the script, yes!"""

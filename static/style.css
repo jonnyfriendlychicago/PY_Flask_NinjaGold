@@ -5,10 +5,11 @@
 }
 
 .formContainer01 {
-    padding: 50px; 
+    padding: 25px; 
     background-color: rgb(65, 65, 65);
-    width: 500px;
-    height: 500px; 
+    width: 400px;
+    height: 200px; 
+    margin: 10px; 
 }
 
 .formSelectSameLine {
